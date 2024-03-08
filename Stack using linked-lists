@@ -1,0 +1,67 @@
+//We can assume our linked list to be a horizontal stack where the operations like deletion and insertion would take place at the top of the stack or at the head of the linked list.
+
+//=>To perform all the operations our head of the linked list would act as the top of the stack.
+
+#include<bits/stdc++.h>
+#include<iostream>
+using namespace std;
+
+struct structNode{
+    int data;
+    structNode* next;
+    public:
+    structNode(int d){
+        data=d;
+        next=NULL;
+    }
+};
+struct Stack{
+    //important:= creating a pointer in stack class of class structNode
+    structNode* top;
+    int size;
+    Stack(){
+        top=NULL;
+        size=0;
+    }
+    
+void stackpush(int x){
+    structNode* n=new structNode(x);
+    n->next=top;
+    top=n;
+    size++;
+}
+void stackpop(){
+    if(top==NULL){
+        return;
+    }
+    structNode* temp=top;
+    top=top->next;
+    delete temp;
+    size--;
+}
+int peek(){
+    if(top==NULL){
+        return -1;
+    }
+    return top->data;
+}
+void printstack(){
+    structNode* current=top;
+    while(current!=NULL){
+        cout<<current->data<<" ";
+        current=current->next;
+    }
+    cout<<endl;
+    
+}
+};
+int main(){
+    Stack s;
+    s.stackpush(1);s.stackpush(2);s.stackpush(3);s.stackpush(4);s.stackpush(5);
+    s.printstack();
+    cout<<s.peek()<<endl;
+    s.stackpop();s.printstack();
+    return 0;
+    
+}
+
