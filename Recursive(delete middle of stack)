@@ -1,0 +1,47 @@
+
+//important concept//Optimized approach
+#include <bits/stdc++.h> 
+void solve(stack<int>&inputStack, int count,int size){
+    //base case
+   if(count==size/2){
+      inputStack.pop();return;
+   }
+   //storing stack top temporarily in num
+   int num=inputStack.top();
+   inputStack.pop();
+   solve(inputStack,count+1,size);
+   inputStack.push(num);
+   return;
+}
+void deleteMiddle(stack<int>&inputStack, int N){
+	
+   // Write you r code here
+    int count=0;
+    solve(inputStack,count,N);
+}
+//Normal approach
+void deleteMiddle(stack<int> &inputStack, int N)
+{
+    
+    // Initialising temporary stack
+	stack<int> tempStack;                    
+	int count = 0;
+
+    // Storing elements from input stack to temporary stack
+	while(count < N / 2)
+    {                     
+		tempStack.push(inputStack.top());
+		inputStack.pop();
+		count = count + 1;
+	}
+
+    // Deleting the middle element
+	inputStack.pop();                       
+
+    // Storing elements back to input stack
+	while( ! tempStack.empty())
+    {              
+		inputStack.push(tempStack.top());
+		tempStack.pop();
+	}
+}
