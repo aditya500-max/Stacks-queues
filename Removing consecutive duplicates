@@ -1,0 +1,22 @@
+class Solution
+{
+    public:
+    //Function to remove consecutive duplicates from given string using Stack.
+    string removeConsecutiveDuplicates(string S)
+    {
+        // Your code here
+        if(S.empty()){
+            return "";
+        };
+       string result = S.substr(0, 1);
+        
+        for (int i=1; i<S.length(); i++) {
+              
+              if(S[i-1] != S[i]){
+                  result += S[i];
+              }
+        }
+        return result;
+    }
+    
+};
