@@ -1,0 +1,20 @@
+//Concept of Next lesser element:
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& prices) {
+        int n=prices.size();
+        stack<int>st;
+        vector<int>dis(n,-1);
+        for(int i=n-1;i>=0;i--){
+             while(!st.empty()&&prices[i]<st.top()){
+                st.pop();
+             } 
+             dis[i]=(!st.empty())?st.top():0;
+             st.push(prices[i]);
+        }
+        for(int i=0;i<n;i++){
+            prices[i]-=dis[i];
+        }
+        return prices;
+    }
+};
